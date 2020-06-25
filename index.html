@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>slide_array</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <article>
+      <div class="container">
+        <div class="image-container">
+          <img id="image" class="image" src="./image1.jpg" alt="" />
+        </div>
+        <div class="name-job">
+          <h2 id="name" class="name"></h2>
+          <p id="job" class="job"></p>
+        </div>
+        <div class="buttons">
+          <button id="prev-btn" class="btn prev-btn">prev</button>
+          <button id="next-btn" class="btn next-btn">next</button>
+
+          <button id="random-btn" class="btn random-btn">random</button>
+        </div>
+      </div>
+    </article>
+    <script>
+      const persons = [
+        {
+          id: 1,
+          img: "./images/image1.jpg",
+          name: "Marylin Genus",
+          job: "CFO",
+        },
+        { id: 2, img: "./images/image2.jpg", name: "Opara John", job: "CAO" },
+        {
+          id: 3,
+          img: "./images/image3.jpg",
+          name: "Onsung Bandas",
+          job: "Doctor",
+        },
+        { id: 4, img: "./images/image4.jpg", name: "Budus Jela", job: "Nurse" },
+        {
+          id: 5,
+          img: "./images/image5.jpg",
+          name: "Sara Kerkins",
+          job: "Manager",
+        },
+        {
+          id: 6,
+          img: "./images/image6.jpg",
+          name: "Jaba Suna",
+          job: "Bondocks",
+        },
+        {
+          id: 7,
+          img: "./images/image7.jpg",
+          name: "Jerry hooks",
+          job: "Buttler",
+        },
+      ];
+
+      //console.log(persons);
+
+      const image = document.getElementById("image");
+      const name = document.getElementById("name");
+      const job = document.getElementById("job");
+
+      const buttons = document.querySelectorAll(".btn");
+      const previous = document.getElementById("prev-btn");
+      const next = document.getElementById("next-btn");
+      const randomButton = document.getElementById("random-btn");
+
+      let currentPerson = 0;
+
+      //   async function getData() {
+      //     const res = await fetch(`./data/persons.json`);
+      //     const persons = await res.json();
+
+      //   }
+
+      //   fetch(`./data/persons.json`)
+      //       .then((res) => res.json())
+      //       .then((res) => console.log({ persons: res }));
+
+      //display when content is loaded
+      window.addEventListener("DOMContentLoaded", function () {
+        getPerson();
+      });
+
+      function getPerson() {
+        const person = persons[currentPerson];
+        image.src = person.img;
+        name.innerHTML = person.name;
+        job.innerHTML = person.job;
+        //css/animation
+        animation();
+      }
+
+      //use generated random number to access array objects
+      function getRandom() {
+        const person = persons[randomNumber()];
+        image.src = person.img;
+        name.textContent = person.name;
+        job.innerHTML = person.job;
+
+        //css/animation
+        animation();
+      }
+
+      //get next object
+      next.addEventListener("click", function () {
+        currentPerson++;
+        if (currentPerson > persons.length - 1) {
+          currentPerson = 0;
+        }
+        getPerson();
+      });
+
+      //get previous object
+      previous.addEventListener("click", function () {
+        currentPerson--;
+        if (currentPerson < 0) {
+          currentPerson = persons.length - 1;
+        }
+        getPerson();
+      });
+
+      //generate randome number based on array length
+      function randomNumber() {
+        let random = Math.floor(Math.random() * persons.length);
+        return random;
+      }
+
+      //call randomly generate object by click ebent
+      randomButton.addEventListener("click", function () {
+        currentPerson = Math.floor(Math.random() * persons.length);
+        getPerson();
+        //getRandom();
+      });
+
+      function animation() {
+        name.style.textDecoration = "underline";
+        image.animate(
+          [{ opacity: "0.3" }, { opacity: "1.0" }],
+
+          {
+            duration: 1000,
+            fill: "forwards",
+          },
+          { transition: "all 1s linear" }
+        );
+      }
+    </script>
+  </body>
+</html>
