@@ -1,7 +1,0 @@
-[
-  { "id": 1, "img": "./image1.jpg", "name": "Marylin Genus", "job": "CFO" },
-  { "id": 2, "img": "./image2.jpg", "name": "Opara John", "job": "CAO" },
-  { "id": 3, "img": "./image3.jpg", "name": "Onsung Bandas", "job": "Doctor" },
-  { "id": 4, "img": "./image4.jpg", "name": "Budus Jela", "job": "Nurse" },
-  { "id": 5, "img": "./image5.jpg", "name": "Sara Kerkins", "job": "Manager" }
-]
